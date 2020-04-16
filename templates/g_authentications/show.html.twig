@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GAuthentications{% endblock %}
+
+{% block body %}
+    <h1>GAuthentications</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ g_authentication.id }}</td>
+            </tr>
+            <tr>
+                <th>Gauthentication</th>
+                <td>{{ g_authentication.gauthentication }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('g_authentications_index') }}">back to list</a>
+
+    <a href="{{ path('g_authentications_edit', {'id': g_authentication.id}) }}">edit</a>
+
+    {{ include('g_authentications/_delete_form.html.twig') }}
+{% endblock %}

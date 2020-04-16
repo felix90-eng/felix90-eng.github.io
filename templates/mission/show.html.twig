@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mission{% endblock %}
+
+{% block body %}
+
+<style>
+@page { margin: 35px; }
+body { margin: 1px; }
+ .pdf-no-display {
+    display: none;
+  }
+   .image
+    {
+        margin-left:45%;
+        
+    }
+</style>
+
+<div class ="col pt-2">
+
+    <h3 style ="text-align:center"> REPUBLIC OF RWANDA</h3><br>
+  
+    <img class ="image" src="../public/images/gvt_logo.jpg" width ="100px">
+    <h3 style ="text-align:center"> RWANDA HOUSING AUTHORIRY</h3>
+    <hr>
+
+    <h3 style ="text-align:center"> <i><u>Travel Mission Clearence</u></i></h3>
+
+    <table id ="myTable" class="table-striped table-bordered" style="width:100%">
+        <tbody>
+            <tr>
+                <th>Staff Name</th>
+                <td>{{ mission.staff }}</td>
+            </tr>
+            
+            <tr>
+                <th>Mis_purpose</th>
+                <td>{{ mission.misPurpose }}</td>
+            </tr>
+            <tr>
+                <th>Destination</th>
+                <td>{{ mission.destination1 }}-{{ mission.destination2 }}-{{ mission.destination3 }}-{{ mission.destination4 }}</td>
+            </tr>
+            <tr>
+                <th>LeavedAt</th>
+                <td>{{ mission.leavedAt ? mission.leavedAt|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ReturnedAt</th>
+                <td>{{ mission.returnedAt ? mission.returnedAt|date('Y-m-d') : '' }}</td>
+            </tr>
+              <tr>
+                <th>NumDays</th>
+                <td>{{ mission.numDays }}</td>
+            </tr>
+            <tr>
+                <th>Mean_trans</th>
+                <td>{{ mission.meanTrans }}</td>
+            </tr>
+
+           
+
+            <tr>
+            <th>
+             <p>
+             Checked by:
+            </p>
+            <br><br>
+            <p>
+            <strong> Noel NSANZINEZA</strong><BR>
+              <strong> Corporate Service Division Manager</strong>
+            </p>
+            </th>
+             
+             <th>
+             <p>
+             Approved by:
+            </p>
+            <br><br>
+            <p>
+            <strong> Eric SERUBIBI</strong><br>
+              <strong> Director General</strong>
+            </p>
+            </th>
+            </tr>
+          
+            
+        </tbody>
+    </table>
+    </div>
+    <script>
+   
+</script>
+
+{% endblock %}

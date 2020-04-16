@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit GAuthentications{% endblock %}
+
+{% block body %}
+    <h1>Edit GAuthentications</h1>
+
+    {{ include('g_authentications/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('g_authentications_index') }}">back to list</a>
+
+    {{ include('g_authentications/_delete_form.html.twig') }}
+{% endblock %}

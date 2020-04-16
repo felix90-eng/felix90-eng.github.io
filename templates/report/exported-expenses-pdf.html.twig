@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mission Expenses Report{% endblock %}
+
+{% block body %}
+
+<style>
+@page { margin: 35px; }
+body { margin: 1px; }
+ .pdf-no-display {
+    display: none;
+  }
+   .image
+    {
+        margin-left:45%;
+        
+    }
+    #row{text-align:center;margin-left:15%;margin-right:10%;background-color:lightgrey;}
+    #myTable {border:1px solid; width:100%}
+    #myTable tr th {border:1px solid;}  #myTable tr td  {border:1px solid;}
+</style>
+<div id ="row" class ="row">
+<table width="100%">
+<tr class"hideAndShow"><td><h3 style ="text-align:center"> REPUBLIC OF RWANDA</h3><br></td></tr>
+<tr class"hideAndShow"><td><img class ="image" src="../public/images/gvt_logo.jpg" width ="100px"><br></td></tr>
+  <tr class"hideAndShow"><td> <h3 style ="text-align:center"> RWANDA HOUSING AUTHORIRY</h3><hr></td></tr>
+
+  <tr><td> <h3 style ="text-align:center"><i><u>Mission Expenses Report</u></i></h3></td></tr>
+
+   <tr style ="height:40px"><td></td></tr>
+   <tr><td>
+     <p style ="border:1px solid red;border-radius:20px;padding:10px;height:50px">The overall total amount spent on missions are equivalent to :
+     {% for mission in missions %} <b>{{mission.expense}} Frws </b>{% endfor %}</p>
+   </tr></td>
+
+<tr style ="height:50px"><td></td></tr> <tr><td></td></tr>  <tr><td></td></tr>  <tr><td></td></tr>
+    <tr><td>
+        <p style ="background-color:darkblue;color:white"> Below are Missions'holders :</p>
+    </tr></td>
+
+    <tr><td>
+<table id ="myTable" class="table ">
+        <thead>
+            <tr>
+                 <th> FullName</th>
+                <th>T.Allowance</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for mission in missions %}
+            <tr>
+                <td>{{ mission.first_name }} {{mission.last_name}}</td>
+                <td>{{ mission.allowance }}</td>
+                
+                <td>
+                    {{mission.created_at}}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="20">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </td></tr>
+    
+    </table>
+    </div>
+    <br>
+    <hr>
+
+    <footer style ="float:right;color:blue"> <i>Travel clearence managent software</i>(Rwand Housing Authority) </footer>
+
+{% endblock %}
+

@@ -1,0 +1,137 @@
+
+<style>
+#content{
+ background-color :white;
+ padding-left:3%;
+ margin-top:3%;
+}
+    </style>
+    {% block body %}
+<div id ="content">
+<form  method="post" action="save">
+<div class="form-row">
+    <div class="form-group col-md-4">
+    <div><label for="mission_staff" class="required">Staff</label><select id="mission_staff" name="staff" class="form-control" required><option value="{{app.session.get('staffId')}}">{{app.session.get('staffFName')}} {{app.session.get('staffLName')}}</option></select></div>
+    </div>
+    <div class="form-group col-md-4">
+    <div><label for="mission_position" class="required">Post</label><select id="mission_position" name="position" class="form-control" required><option value="{{app.session.get('postid')}}">{{app.session.get('postname')}}</option></select></div>
+    </div>
+    <div class="form-group col-md-4">
+    <div><label for="mission_department" class="required">Department</label><select id="mission_department" name="department" class="form-control" required><option value="{{app.session.get('deptid')}}">{{app.session.get('deptname')}}</option></select></div>
+    </div>
+    </div>
+    <div class="form-row">
+    <div class="form-group col-md-6">
+    <div><label for="mission_mis_purpose" class="required">Mis purpose</label><textarea id="mission_mis_purpose" name="mis_purpose" required="required" class="form-control"></textarea></div>
+    </div>
+     <div class="form-group col-md-3">
+    <div><label for="mission_mis_category" class="required">Mis category</label><select id="mission_mis_category" name="mis_category" required="required" class="form-control" ><option value="night">Night</option><option value="day">Day</option></select></div>
+    </div>
+    </div>
+    <div class="form-row">
+    <div class="form-group col-md-4">
+    <div><label for="mission_leavedAt" class="required">Leaved at</label><input type="text" id="mission_leavedAt" name="leavedAt" required="required" class="form-control " /></div>
+    </div>
+     <div class="form-group col-md-4">
+    <div><label for="mission_returnedAt" class="required">Returned at</label><input type="text" id="mission_returnedAt" name="returnedAt" required="required" class="form-control" /></div>
+    </div>
+     <div class="form-group col-md-4">
+    <div><label for="mission_numDays" class="required"></label><input type="hidden" id="mission_numDays" name="numDays" required="required" class="form-control"  readOnly/></div>
+    </div>
+    </div>
+    <div class="form-row">
+    <div class="form-group col-md-3">
+    <div><label for="mission_destination1" class="required">Destination1</label><select id="mission_destination1" name="destination1" class="form-control" required><option></option>{% for loc in locations %}<option value="{{loc.id}}">{{loc.location}}</option>{% endfor %}</select></div>
+    </div>
+<div class="form-group col-md-2">
+    <div><label class="radio1">Will you Hosted Here?</label>
+    <label class ="radio-inline opt11">
+     <input type="radio" name="optradio" checked>NO
+    </label>
+    <label class="radio-inline opt12">
+      <input type="radio" name="optradio">YES
+    </label>
+    </div>
+    </div>
+<div class="form-group col-md-2">
+    <div><label for="mission_d1IdNumDay" class="required">D1 id num day</label><input type="text" id="mission_d1IdNumDay" name="d1IdNumDay"  required ="true" class="form-control" /></div>
+    </div>
+<div class="form-check form-check-inline">
+  <button type= "button" name="submit" id="add-btn1">Add Other Destination</button>
+</div>
+     
+    </div>
+
+<div class="form-row">
+    <div class="form-group col-md-3">
+    <div><label for="mission_destination2" class="required">Destination2</label><select id="mission_destination2" name="destination2" class="form-control"><option value="0">------------</option>{% for loc in locations %}<option value="{{loc.id}}">{{loc.location}}</option>{% endfor %}</select></div>
+    </div>
+<div class="form-group col-md-2">
+    <div><label  class="radio2">Will you Hosted Here?</label>
+    <label class="radio-inline opt21">
+     <input type="radio" name="optradio"  class="" checked>NO
+    </label>
+    <label class="radio-inline opt22">
+      <input type="radio" name="optradio" class="">YES
+    </label>
+    </div></div>
+<div class="form-group col-md-2">
+    <div><label for="mission_d2IdNumDay" class="required">D2 id num day</label><input type="text" id="mission_d2IdNumDay" name="d2IdNumDay"  class="form-control" /></div>
+    </div>
+<div class="form-check form-check-inline">
+  <button type= "button" name="submit" id="add-btn2">Add Other Destination</button>
+</div>
+</div>
+    <div class="form-row">
+    <div class="form-group col-md-3">
+    <div><label for="mission_destination3" class="required">Destination3</label><select id="mission_destination3" name="destination3" class="form-control"><option value="0">------------</option>{% for loc in locations %}<option value="{{loc.id}}">{{loc.location}}</option>{% endfor %}</select></div>
+    </div>
+<div class="form-group col-md-2">
+    <div><label  class="radio3">Will you Hosted Here?</label>
+    <label class="radio-inline opt31">
+     <input type="radio" name="optradio" class="" checked>NO
+    </label>
+    <label class="radio-inline opt32">
+      <input type="radio" name="optradio" class="">YES
+    </label>
+    </div></div>
+<div class="form-group col-md-2">
+    <div><label for="mission_d3IdNumDay" class="required">D3 id num day</label><input type="text" id="mission_d3IdNumDay" name="d3IdNumDay" class="form-control" /></div>
+    </div>
+<div class="form-check form-check-inline">
+  <button type= "button" name="submit" id="add-btn3">Add Other Destination</button>
+</div>
+</div>
+   <div class="form-row">
+    <div class="form-group col-md-3">
+    <div><label for="mission_destination4" class="required">Destination4</label><select id="mission_destination4" name="destination4" class="form-control"><option value="0">------------</option>{% for loc in locations %}<option value="{{loc.id}}">{{loc.location}}</option>{% endfor %}</select></div>
+    </div>
+<div class="form-group col-md-2">
+    <div><label  class="radio4">Will you Hosted Here?</label>
+    <label class="radio-inline opt41">
+     <input type="radio" name="optradio" class="" checked>NO
+    </label>
+    <label class="radio-inline opt42">
+      <input type="radio" name="optradio">YES
+    </label>
+    </div></div>
+<div class="form-group col-md-2">
+    <div><label for="mission_d4IdNumDay" class="required">D4 id num day</label><input type="text" id="mission_d4IdNumDay" name="d4IdNumDay" class="form-control" /></div>
+    </div>
+    </div>
+
+    <div class="form-row">
+    <div class="form-group col-md-6">
+    <div><label for="mission_mean_trans" class="required">Mean trans</label><input type="text" id="mission_mean_trans" name="mean_trans" required="required" class="form-control" /></div>
+    </div>
+    <div class="form-group col-md-4">
+    <div><label for="mission_supervisor" class="required">Assign To</label><select id="mission_supervisor" name="supervisor" class="form-control" required><option></option>{% for sup in supervisor %}<option value="{{sup.id}}">{{sup.name}}</option>{% endfor %}</select></div>
+    </div>
+    </div>
+
+    <input type="submit" class="name="submit" value="save">
+    </form>
+
+</div>
+
+{% endblock %}

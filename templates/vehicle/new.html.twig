@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Vehicle{% endblock %}
+
+{% block body %}
+        <div class ="col-sm-9">
+            <a href="{{ path('vehicle_index') }}">back to list</a>
+        <div class ="jumbotron">
+        <h4>Internal Transportation Form Request</h4>
+        {{ include('vehicle/_form.html.twig') }}
+        </div>
+        </div>
+
+    
+   
+
+    <script>
+
+    $(document).ready(function(){
+
+      $('.colhide').hide();
+       $("#vehicle1_tripdays").attr('readonly',true);
+
+
+       $('#vehicle1_staff').editableSelect().on('select.editable-select', function (e, li) {
+                    $('#vehicle1_staff').val(li.attr('value'));
+                });
+        $('#vehicle1_position').editableSelect().on('select.editable-select', function (e, li) {
+                    $('#vehicle1_position').val(li.attr('value'));
+                });
+
+
+          $('#overbtn').hover(function(){
+
+                  var leaveat= new Date($('.js1-datepicker').val());
+                  var returnat= new Date($('.js2-datepicker').val()); 
+
+                  var Difference_In_Time =returnat.getTime() - leaveat.getTime();
+                  var numDays= Difference_In_Time / (1000 * 3600 * 24);
+
+                $('#vehicle1_tripdays').val(numDays+1);
+            //alert(leaveat);
+                   
+          });
+
+          $('#vehicle1_travelmode').on('change', function() {
+
+            if($(this).val()=='more'){
+               $('.colhide').show();
+                $('#vehicle1_travellerquantity').val('');
+                 $("#vehicle1_travellerquantity").attr('readonly',false);
+              
+            }
+            else if($(this).val()=='individual'){
+              $('.colhide').show();
+               $('#vehicle1_travellerquantity').val('1');
+               $("#vehicle1_travellerquantity").attr('readonly',true);
+
+              
+            }
+            else{
+               $('.colhide').hide();
+            }
+            
+
+          });
+
+    });
+     
+    
+
+    </script>
+{% endblock %}
+
+
+        

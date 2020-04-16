@@ -1,0 +1,186 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Missions{% endblock %}
+
+{% block body %}
+
+<div style ="background:white"class ="row">
+<div class ="col-sm-12">
+
+ <h4>Missions requested</h4>
+{% if app.session.get('validUser') =='ADMIN'%}
+<a class ="btn btn-secondary"href="{{path('mission_new')}}"> Apply for flesh mession</a>
+{% endif %}
+<div class="table-responsive">
+    <table id ="myTable" class="table table-hover" >
+    
+        <thead class="thead-dark thead-light">
+            <tr>
+                
+                 {% if app.session.get('validUser') =='DG'%}
+                 <th>Mis_purpose</th>
+                 <th>Authorizer</th>
+                 <th>No.of staff</th>
+
+                 {% else %}
+                <th>#</th>
+                 <th>Mis_purpose</th>
+                 <th>Staff</th>
+                <th>Post</th>
+                 {% endif %}
+                
+                <th width="40%">Destination (number indicates spent night)</th>
+                <th>Dates</th>
+                <th>T.Allowance</th>
+                <th width="10%">Mstatus</th>
+                 <th width="40%">Actions</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+
+            {% if app.session.get('validUser') =='DG' %}
+             {% for option in options %}
+          
+                <tr>
+                 <td>{{ option.mis_purpose }}</td>
+                 <td>{{ option.name }}</td>
+                  <td>{{ option.noOfStaff }}</td>
+                  <td>{% for loc in location %} {{loc}} {% endfor %}</td>
+               
+                <td>LeavedAt:<br>{{option.leaved_at }}<br/>
+                    ReturnedAt:<br>{{ option.returned_at }}<br>
+
+                    Duration:{{option.num_days }}days
+                </td>
+                  <td>{{ option.total }}</td>
+                  <td>{{ option.mstatus }}</td>
+                  
+                 <td syle="width:38%">
+                 <a href="#previous" class="btn btn-primary" data-toggle="collapse">previously working on it.</a>
+                        <div id="previous" class="collapse">
+                         1.Authorized By:{{ option.name }}<br/>
+                  2.Verified By:Accountant officer <br/>
+                  </div>
+               <a class="btn btn-success" data-toggle="modal" data-target="#myModal"><i class ="fa fa-check-square" aria-hidden="true">Approve</i></a>
+                 <a class="btn btn-warning" href="">come to discuss for it</a>
+                 
+                   </td>
+                   </tr>
+                     
+                 {% else %}
+            
+                        <tr>
+                            <td colspan="20">no records found</td>
+                        </tr>
+          {% endfor %}
+
+            {% else %}
+          {% for mission in missions %}
+           <tr>
+             <td>{{ mission.id }}</td>
+                 <td>{{ mission.misPurpose }}</td>
+                <td>{{ mission.staff }}</td>
+                <td>{{ mission.position }}</td>
+        
+                
+               
+               <td>{{ mission.destination1 }} {{ mission.d1IdNumDay }}<br>{{ mission.destination2 }}  {{ mission.d2IdNumDay }}<br>{{ mission.destination3 }}  {{ mission.d3IdNumDay }}<br>{{ mission.destination4 }}  {{ mission.d4IdNumDay }}</td>
+               
+               
+                <td>LeavedAt:<br>{{ mission.leavedAt ? mission.leavedAt|date('Y-m-d') : '' }}<br/>
+                    ReturnedAt:<br>{{ mission.returnedAt ? mission.returnedAt|date('Y-m-d') : '' }}<br>
+
+                    Duration:{{ mission.numDays }}days
+                </td>
+                 <td>{{ mission.tallowance }}rwfs</td>
+                 
+                <td>{{ mission.mstatus }}</td>
+                 <td syle="width:38%">
+                          {% if app.session.get('validUser') =='ACCOUNTANT' %}
+
+                          {% if mission.mstatus !='approved'%}
+                         <a href="#previous" class="btn btn-primary" data-toggle="collapse">previously working on it.</a>
+                         <div id="previous" class="collapse">
+                              1.Authorized By:{{ mission.supervisor }}<br/>
+                             
+                        </div> 
+                          {% endif %}
+                        {% endif %}
+                                    {% if app.session.get('validUser')  == 'ADMIN'%}
+                                            
+                                    <a class="btn btn-success" href="{{ path('mission_show', {'id': mission.id}) }}"><i class ="fa fa-check-square" aria-hidden="true">View</i></a>
+                                    <a class="btn btn-danger" href="{{ path('mission_show', {'id': mission.id}) }}"><i class ="fa fa-check-square" aria-hidden="true">Delete</i></a>
+                                    
+                                    {% else %}
+                                     {% if mission.mstatus =='approved'%}
+                                             <a class="btn btn-success" href="{{ path('mission_show', {'id': mission.id}) }}"><i class ="fa fa-check-square" aria-hidden="true">View</i></a>
+                                    {% else %}
+                                     <a class="btn btn-success" href="{{ path('mission_approval', {'id': mission.id}) }}"><i class ="fa fa-check-square" aria-hidden="true">Accept</i></a>
+                                    <a class="btn btn-danger" href="{{ path('mission_reject', {'id': mission.id}) }}">reject</a>
+                                   
+                                    {% endif %} 
+                                        {% endif %}
+                                        
+    
+                 </td>
+    
+            </tr>
+             {% else %}
+            
+                        <tr>
+                            <td colspan="20">no records found</td>
+                        </tr>
+
+        {% endfor %} 
+           
+
+          {% endif %}
+     
+        </tbody>
+    </table>
+    
+     </div>
+      </div>
+    </div>
+
+      <!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Staff waiting a decision!</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <table class ="table">
+        <tr> <th>#</th><th>Name</th> <th>Post</th></tr>
+        {% for mission in missions %}
+           <tr>
+             <td>{{ mission.id }}</td>
+                <td>{{ mission.staff }}</td>
+                <td>{{ mission.position }}</td>
+                <td>
+                <a class="btn btn-success" href="{{ path('mission_approval', {'id': mission.id}) }}"><i class ="fa fa-check-square" aria-hidden="true">Accept</i></a>
+                   <a class="btn btn-danger" href="{{ path('mission_reject', {'id': mission.id}) }}">reject</a>
+                 </td>
+                </tr>
+                {% endfor %}
+        </table>
+        </table>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+    
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Position index{% endblock %}
+
+{% block body %}
+<div class ="col pt-2">
+    <h1>Position index</h1>
+  <a href="{{ path('position_new') }}">Create new</a>
+
+      <table id ="myTable" class="records_list table table-striped table-bordered  dt-responsive " cellspacing="0" ">
+        
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Position</th>
+                 <th>Level</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for position in positions %}
+            <tr>
+                <td>{{ position.id }}</td>
+                <td>{{ position.position }}</td>
+                <td>{{ position.level }}</td>
+                
+                <td>
+                    <a href="{{ path('position_show', {'id': position.id}) }}">show</a>
+                    <a href="{{ path('position_edit', {'id': position.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+<script>
+$(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+</script>
+   
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Department index{% endblock %}
+
+{% block body %}
+<div class ="col pt-2">
+    <h1>Department index</h1>
+<a href="{{ path('department_new') }}">Create new</a>
+    <br />
+    <table id ="myTable" class="records_list table table-striped table-bordered  dt-responsive " cellspacing="0" ">
+       
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Department</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for department in departments %}
+            <tr>
+                <td>{{ department.id }}</td>
+                <td>{{ department.department }}</td>
+                <td>
+                    <a href="{{ path('department_show', {'id': department.id}) }}">show</a>
+                    <a href="{{ path('department_edit', {'id': department.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+$(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+</script>
+    
+{% endblock %}

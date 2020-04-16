@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+
+          <!-- Latest compiled and minified CSS -->
+          <link rel="stylesheet" href="{{asset('css/jquery-ui.css')}}">
+         <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
+
+      <link rel="stylesheet" href="{{asset('css/jquery.dataTables.min.css')}}" >
+     <link rel="stylesheet" href="{{asset('css/jquery-editable-select.min.css')}}" >
+      {% endblock %}
+
+              
+
+<!-- jQuery library -->
+<script src="{{asset('js/jquery.min.js')}}"></script>
+<script src="{{asset('js/jquery-ui.js')}}"></script>
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
+<script src="{{asset('js/jquery.dataTables.min.js')}}"></script> 
+      <script src="{{asset('js/jquery-editable-select.min.js')}}"></script>
+       <script src="{{asset('js/jspdf.min.js')}}"></script>
+       </head>
+
+
+    <body style="background:lightblue;">
+    <div style =""class ="container">
+    
+     {{ include('default_navigations.html.twig') }}
+     
+    <div  style ="margin-top:5%;margin-left:80%"class ="row pdf-no-display"> <p style="">Logged In as {{app.session.get('validUser')}}</p><a style="" href="{{path('security_logout')}}">Log Out</a> </div>
+	  
+
+   {% block body %}
+			
+   {% endblock %}
+</div>
+   </div>
+    
+
+  
+       
+    </body>
+</html>

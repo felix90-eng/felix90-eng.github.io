@@ -1,0 +1,203 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Mission{% endblock %}
+
+{% block body %}
+ <div class="col-sm-9">
+  <div class ="row">{{app.session.get('saveValid')}}</div>
+  <div class ="jumbotron">
+ <h4>Request new Mission</h4>
+   {{ include('mission/_form.html.twig') }}
+  </div>
+  </div>
+  
+    
+<script>
+$(document).ready(function(){
+    
+   $('#mission_destination2').hide();
+    $('#mission_destination3').hide();
+    $('#mission_destination4').hide();
+
+   $('label[for="mission_destination2"]').hide();
+   $('label[for="mission_destination3"]').hide();
+   $('label[for="mission_destination4"]').hide();
+
+
+    $('.radio1').hide();
+     $('.opt11').hide();
+    $('.opt12').hide();
+
+    $('.radio2').hide();
+     $('.opt21').hide();
+    $('.opt22').hide();
+
+    $('.radio3').hide();
+     $('.opt31').hide();
+    $('.opt32').hide();
+
+    $('.radio4').hide();
+     $('.opt41').hide();
+    $('.opt42').hide();
+
+
+   $('#mission_d1IdNumDay').hide();
+    $('#mission_d2IdNumDay').hide();
+    $('#mission_d3IdNumDay').hide();
+    $('#mission_d4IdNumDay').hide();
+    $('#mission_d5IdNumDay').hide();
+
+
+$('label[for="mission_d1IdNumDay"]').hide();
+   $('label[for="mission_d2IdNumDay"]').hide();
+   $('label[for="mission_d3IdNumDay"]').hide();
+   $('label[for="mission_d4IdNumDay"]').hide();
+    $('label[for="mission_d5IdNumDay"]').hide();
+
+   $('#add-btn1').hide();
+   $('#add-btn2').hide();
+   $('#add-btn3').hide();
+
+
+   $('select').on('change', function() {
+    $('#mission_loc1Hosted').show();
+       $('.radio1').show();
+       $('.opt11').show();
+       $('.opt12').show();
+       $('#add-btn1').show();
+});
+
+$(document).on('click','#add-btn1',function(){
+       //alert(3);
+        $('#mission_destination2').toggle();
+       $('label[for="mission_destination2"]').toggle();
+        $('.radio2').toggle();
+         $('.opt21').toggle();
+       $('.opt22').toggle();
+       $('#mission_d2IdNumDay').hide();
+       $('label[for="mission_d2dNumDay"]').hide();
+         $('#add-btn2').toggle();
+   });
+
+$(document).on('click','#add-btn2',function(){
+       //alert(3);
+        $('#mission_destination3').toggle();
+       $('label[for="mission_destination3"]').toggle();
+
+       $('.radio3').toggle();
+        $('.opt31').toggle();
+       $('.opt32').toggle();
+       $('#mission_d3IdNumDay').hide();
+            $('label[for="mission_d4IdNumDay"]').hide();
+       $('#add-btn3').toggle();
+   });
+
+$(document).on('click','#add-btn3',function(){
+       //alert(3);
+        $('#mission_destination4').toggle();
+        $('label[for="mission_destination4"]').toggle();
+
+       $('.radio4').toggle();
+        $('opt41').toggle();
+        $('#mission_d4IdNumDay').hide();
+            $('label[for="mission_d4IdNumDay"]').hide();
+       $('.opt42').toggle();
+             
+   });
+   //show fields when staff will pass night
+
+   $(document).on('click','.opt12',function(){
+
+         $('#mission_d1IdNumDay').toggle();
+            $('label[for="mission_d1IdNumDay"]').toggle();
+             
+   });
+   $(document).on('click','.opt22',function(){
+
+         $('#mission_d2IdNumDay').toggle();
+            $('label[for="mission_d2IdNumDay"]').toggle();
+             
+   });
+   $(document).on('click','.opt32',function(){
+
+         $('#mission_d3IdNumDay').toggle();
+            $('label[for="mission_d3IdNumDay"]').toggle();
+             
+   });
+   $(document).on('click','.opt42',function(){
+
+         $('#mission_d4IdNumDay').toggle();
+            $('label[for="mission_d4IdNumDay"]').toggle();
+             
+   });
+    
+//hide fields when staff will not pass night 
+
+ $(document).on('click','.opt11',function(){
+
+         $('#mission_d1IdNumDay').hide();
+            $('label[for="mission_d1IdNumDay"]').hide();
+             
+   });
+   $(document).on('click','.opt21',function(){
+
+         $('#mission_d2IdNumDay').hide();
+            $('label[for="mission_d2IdNumDay"]').hide();
+             
+   });
+   $(document).on('click','.opt31',function(){
+
+         $('#mission_d3IdNumDay').hide();
+            $('label[for="mission_d3IdNumDay"]').hide();
+             
+   });
+   $(document).on('click','.opt41',function(){
+
+         $('#mission_d4IdNumDay').hide();
+            $('label[for="mission_d4IdNumDay"]').hide();
+             
+   });
+    
+    $('#mission_staff').editableSelect().on('select.editable-select', function (e, li) {
+                    $('#mission_staff').val(li.attr('value'));
+                });
+
+$('select').on('change', function() {
+   var returnat= new Date($('#mission_returnedAt').val()); 
+      var leaveat= new Date($('#mission_leavedAt').val());
+
+      var Difference_In_Time =returnat.getTime() - leaveat.getTime();
+      var days= Difference_In_Time / (1000 * 3600 * 24);
+
+    $('#mission_numDays').val(days+1);
+    //alert(days);
+    //alert('ok');
+
+});
+
+    $('#mission_destination1').change(function(){
+
+       returnat= $('#mission_returnedAt').val();
+       leaveat= $('#mission_leavedAt').val();
+
+        Difference_In_Time =returnat.getTime() - leaveat.getTime();
+   var days= Difference_In_Time / (1000 * 3600 * 24);
+
+    //$('#num_days').val(days);
+    //alert(days);
+    alert('ok');
+
+    });
+
+    
+
+    $('#mission_leavedAt').datepicker({ dateFormat:'yy-mm-dd' });
+    $('#mission_returnedAt').datepicker({dateFormat:'yy-mm-dd'});
+
+    
+ 
+});
+</script>
+{% endblock %}
+
+  

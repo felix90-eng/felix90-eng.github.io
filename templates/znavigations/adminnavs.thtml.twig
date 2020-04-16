@@ -1,0 +1,55 @@
+
+    <div class="row">
+        <div class="col-2 collapse show d-md-flex bg-dark pt-2 pl-0 min-vh-100 text-white" id="sidebar">
+            <ul class="nav flex-column flex-nowrap overflow-hidden">
+                <li class="nav-item pdf-no-display">
+                    <a class="nav-link text-truncate" href="{{path('dashboard')}}"><i class="fa fa-home"></i>
+                     <span class="d-none d-sm-inline">Dashboard</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed text-truncate" href="#submenu1" data-toggle="collapse" data-target="#submenu1"><i class="fa fa-table"></i> 
+                    <span class="d-none d-sm-inline">Reports</span></a>
+                    <div class="collapse" id="submenu1" aria-expanded="false">
+                        <ul class="flex-column pl-2 nav">
+                            <li class="nav-item"><a class="nav-link py-0" href="{{path('expenses_index')}}"><span>Mission expenses</span></a></li>
+                             <li class="nav-item"><a class="nav-link py-0" href="{{path('report_index')}}"><span>Currently staff in mission</span></a></li>
+                        
+                           
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item"><a class="nav-link text-truncate" href="{{path('mission_index')}}"><i class="fa fa-bar-chart"></i> <span class="d-none d-sm-inline">Missions</span></a></li>
+                <li class="nav-item"><a class="nav-link text-truncate" href="{{path('staff_index')}}"><i class="fa fa-download"></i> <span class="d-none d-sm-inline">Employees</span></a></li>
+            <li class="nav-item">
+                    <a class="nav-link collapsed text-truncate" href="#submenu3" data-toggle="collapse" data-target="#submenu3"><i class="fa fa-table"></i> 
+                    <span class="d-none d-sm-inline">Security</span></a>
+                    <div class="collapse" id="submenu3" aria-expanded="false">
+                        <ul class="flex-column pl-2 nav">
+                            <li class="nav-item"><a class="nav-link py-0" href="{{path('authentication_index')}}"><span>Manage Groups</span></a></li>
+                             <li class="nav-item"><a class="nav-link py-0" href="{{path('user_index')}}"><span>Manage Users</span></a></li>
+                         
+                             </ul>
+                             </div>
+                             </li>
+            <li class="nav-item">
+                    <a class="nav-link collapsed text-truncate" href="#submenu4" data-toggle="collapse" data-target="#submenu4"><i class="fa fa-table"></i> 
+                    <span class="d-none d-sm-inline">System</span></a>
+                    <div class="collapse" id="submenu4" aria-expanded="false">
+                        <ul class="flex-column pl-2 nav">
+                            <li class="nav-item"><a class="nav-link py-0" href="{{path('level_index')}}"><span>Manage Levels</span></a></li>
+                             <li class="nav-item"><a class="nav-link py-0" href="{{path('position_index')}}"><span>Manage Positions</span></a></li>
+                             <li class="nav-item"><a class="nav-link py-0" href="{{path('allowance_index')}}"><span>Manage Allowances</span></a></li>
+                            <li class="nav-item"><a class="nav-link py-0" href="{{path('department_index')}}"><span>Manage Departments</span></a></li>
+                             <li class="nav-item"><a class="nav-link py-0" href="{{path('location_index')}}"><span>Manage Destinations</span></a></li>
+                                                             
+                        
+                         </ul>
+                             </div>
+                             </li>
+        
+                              <li class="nav-item pdf-no-display"><a class="nav-link text-truncate" href="{{path('security_logout')}}"><i class="fa fa-bar-chart"></i> <span class="d-none d-sm-inline">Log Out</span></a></li>
+                            
+
+            </ul>
+        </div>
+        

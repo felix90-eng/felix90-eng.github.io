@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mission index{% endblock %}
+
+{% block body %}
+<div class ="col pt-2">
+    <h1>Mission report</h1>
+    
+    
+    <table id ="myTable" class="records_list table table-striped table-bordered  dt-responsive " cellspacing="0" ">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Employee_id</th>
+                <th>Mis_purpose</th>
+                <th>Mis_category</th>
+                <th>LeavedAt</th>
+                <th>ReturnedAt</th>
+                <th>Mean_trans</th>
+                   <th>Mission Status</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for mission in missions %}
+            <tr>
+                <td>{{ mission.id }}</td>
+                <td>{{ mission.staff }}</td>
+                <td>{{ mission.misPurpose }}</td>
+                <td>{{ mission.misCategory }}</td>
+                <td>{{ mission.leavedAt ? mission.leavedAt|date('Y-m-d') : '' }}</td>
+                <td>{{ mission.returnedAt ? mission.returnedAt|date('Y-m-d') : '' }}</td>
+                <td>{{ mission.meanTrans }}</td>
+                <td>{{ mission.mstatus }}</td>
+                <td>
+                   </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    </div>
+
+<script>
+$(document).ready( function () {
+    $('#myTable').DataTable({
+       dom:'Bfrtip',
+            buttons:['excel', 'pdf','print']
+    });
+} );
+</script>
+
+{% endblock %}
+

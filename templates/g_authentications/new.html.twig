@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New GAuthentications{% endblock %}
+
+{% block body %}
+    <h1>Create new GAuthentications</h1>
+
+    {{ include('g_authentications/_form.html.twig') }}
+
+    <a href="{{ path('g_authentications_index') }}">back to list</a>
+{% endblock %}

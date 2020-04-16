@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Authoriser{% endblock %}
+
+{% block body %}
+    <h1>Edit Authoriser</h1>
+
+    {{ include('authoriser/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('authoriser_index') }}">back to list</a>
+
+    {{ include('authoriser/_delete_form.html.twig') }}
+{% endblock %}

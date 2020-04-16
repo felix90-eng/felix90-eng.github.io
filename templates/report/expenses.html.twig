@@ -1,0 +1,141 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mission Expenses Report{% endblock %}
+
+{% block body %}
+
+<style>
+
+    #row {margin-left:15%;margin-right:10%;background-color:lightgrey;margin-top:2%}
+    #totalExp {background-color:red; margin-top:0px;border:1px solid red;border-radius:10px;padding:10px;height:50px;
+    margin-bottom:50px;}
+    #pdf-content{width :100%;}
+</style>
+
+ <form>
+ <div  style =" background-color:white," class ="row">
+    <div class ="col-sm-5">
+    <input type ="text" id ="fromDate"  placeholder="From date" class ="form-control">
+    </div>
+<br><br>
+     <div class ="col-sm-5">
+    <input type ="text" id ="toDate"  placeholder="To date" class ="form-control">
+    </div>
+     <div class ="col-sm-2">
+    <button type ="button"id ="filter">Filter</button>
+    </div>
+       </div>
+   </form>
+
+<div id ="row" class ="row">
+
+<div class ="col-sm-12">  <button type ="button" style="margin-left:80%" id="openPDF">EXPORT TO PDF</button> </div>
+  <div id ="pdf-content">
+<div class ="col-sm-12"><h3 style ="text-align:center;margin-top:30px"><i><u>Mission Expenses Report</u></i></h3></div>
+
+<div id ="ajaxHide"class ="col-sm-12"> <p style ="border:1px solid red;border-radius:20px;padding:10px;height:50px"> <b><i id="rangeDate"></b></i>,The overall total amount spent on missions 
+     are equivalent to :
+     {% for mission in missions %} <b id="getTotalExp">{{mission.expense}} Frws </b>{% endfor %}</p></div>
+
+<div id ="filteredData" class ="col-sm-12">
+
+<div class ="col-sm-12"> <h3 style ="background-color:greenyellow;color:darkblack"> Below are details of expenses :</h3> </div>
+ <div class ="col-sm-12">
+<table id ="myTable" class="table">
+        <thead>
+            <tr>
+                 <th> FullName</th>
+                <th>Allowance</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for mission in missions %}
+            <tr>
+                <td>{{ mission.first_name }} {{mission.last_name}}</td>
+                <td>{{ mission.allowance }}</td>
+                
+                <td>
+                    {{mission.created_at}}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="20">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<div id ="elementH"></div>
+
+<script>
+    $(function() {
+
+   $('#myTable').DataTable();
+    $("#fromDate").datepicker({dateFormat: 'yy-mm-dd'});
+    $("#toDate").datepicker({dateFormat: 'yy-mm-dd'});
+
+    $('#filter').click(function(){
+ 
+  var fromdate = $('#fromDate').val();
+  var todate= $('#toDate').val();
+   
+    if(fromdate !='' && todate !=''){
+
+  $.ajax({
+      url :`{{ path('expensesfilter_index') }}`,
+      type : 'post',
+      data :{'fromdate':fromdate,'todate':todate},
+      success:function(result){
+          $('#rangeDate').html('From '+fromdate+ ' Up to '+todate);
+         $('#ajaxHide').html(' ');
+     $('#filteredData').html(result);
+    // alert(result);
+      }
+
+  });
+
+    }
+    });
+
+     $('#openPDF').click(function(){
+ 
+var doc = new jsPDF();
+doc.text(80,20,'REPUBLIC OF RWANDA');
+
+//load image logo
+var img = new Image()
+img.src = '{{asset("images/gvt_logo.jpg")}}'
+doc.addImage(img, 'jpg', 100, 23, 20, 20)
+
+doc.text(70,50,'RWANDA HOUSING AUTHORITY');
+doc.line(20, 52, 200, 52);
+var elementHTML = $('#pdf-content').html();
+var specialElementHandlers = {
+    '#elementH': function (element, renderer) {
+        return true;
+    }
+};
+doc.fromHTML(elementHTML, 15, 50, {
+    'width': 170,
+    'elementHandlers': specialElementHandlers
+});
+
+// Save the PDF
+doc.save('sample-document.pdf');
+
+    
+  });
+    
+});
+
+</script>
+
+{% endblock %}
+

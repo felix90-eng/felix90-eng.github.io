@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Authoriser{% endblock %}
+
+{% block body %}
+<div class ="col-sm-9">
+    <h1>Create new role</h1>
+      <a href="{{ path('authoriser_index') }}">back to list</a>
+    {{ include('authoriser/_form.html.twig') }}
+
+    </div>
+{% endblock %}

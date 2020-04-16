@@ -1,0 +1,57 @@
+{{ form_start(form) }}
+
+<div class="form-row">
+
+<div class ="col">
+   {{ form_row(form.staff,{attr: {class: 'form-control'} }) }}
+</div>
+<div class ="col">
+    {{ form_row(form.position ,{attr: {class: 'form-control'} }) }}
+</div>
+<div class ="col">
+    {{ form_row(form.telephone ,{attr: {class: 'form-control'} }) }}
+</div>
+</div>
+
+
+<div class ="form-row">
+   <div class ="col">
+    {{ form_row(form.purpose,{attr: {class: 'form-control'} }) }}
+    </div>
+</div>
+
+<div class ="row">
+   <div class ="col">
+    {{ form_row(form.destination,{attr: {class: 'form-control'} }) }}
+    </div>
+</div>
+
+
+<div class ="row">
+   <div class ="col">
+    {{ form_row(form.timedisparture) }}
+    </div>
+    <div class ="col">
+    {{ form_row(form.arrivaltime) }}
+    </div>
+    <div class ="col">
+    {{ form_row(form.tripdays,{attr: {class: 'form-control'} }) }}
+    </div>
+</div>
+
+<div class ="row">
+   <div class ="col-sm-11">
+    {{ form_row(form.travelmode,{attr: {class: 'form-control'} }) }}
+    </div>
+    <div class ="col-sm-1 colhide">
+    {{ form_row(form.travellerquantity,{attr: {class: 'form-control'} }) }}
+    </div>
+</div>
+
+<div class ="row">
+<div class ="col text-center"><br>
+  <button id ="overbtn"class=" btn btn-primary">{{ button_label|default('Save') }}</button>
+</div></div>
+
+  
+{{ form_end(form) }}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Allowance{% endblock %}
+
+{% block body %}
+    <h1>Edit Allowance</h1>
+
+    {{ include('allowance/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('allowance_index') }}">back to list</a>
+
+    {{ include('allowance/_delete_form.html.twig') }}
+{% endblock %}

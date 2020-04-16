@@ -1,0 +1,58 @@
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Missions{% endblock %}
+
+{% block body %}
+
+<div class ="col-sm-9">
+
+ <h4> Staff who are currently in mission </h4>
+<div class="table-responsive">
+    <table id ="myTable" class="table-bordered table-sm" cellspacing="0" >
+        <thead class="thead-dark thead-light">
+            <tr>
+
+                <th>#</th>
+                 <th>Mis_purpose</th>
+                 <th>Staff</th>
+                <th>Post</th>
+                
+                <th width="40%">Destination (number indicates spent night)</th>
+                <th>Mission Dates</th>
+                <th>Mission allowance</th>
+            </tr>
+        </thead>
+        <tbody>
+
+          {% for option in options %}
+          
+                <tr>
+                <td>{{ option.id }}</td>
+                 <td>{{ option.mis_purpose }}</td>
+                 <td>{{ option.first_name }}   {{ option.last_name }}</td>
+                  <td>{% for loc in location %} {{loc}} {% endfor %}</td>
+               
+                <td>LeavedAt:<br>{{option.leaved_at }}<br/>
+                    ReturnedAt:<br>{{ option.returned_at }}<br>
+
+                    Duration:{{option.num_days }}days
+                </td>
+                  <td>{{ option.tallowance }}</td>
+                  
+                   </tr>
+                    {% endfor %}      
+        </tbody>
+    </table>
+    
+     </div>
+      </div>
+    
+<script>
+$(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+</script>
+    
+{% endblock %}

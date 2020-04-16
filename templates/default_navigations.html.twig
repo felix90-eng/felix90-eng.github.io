@@ -1,0 +1,89 @@
+
+    <div class="row pdf-no-display">
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+        <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapseNav">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapseNav">
+            <ul class="navbar-nav">
+                
+                 {% if not app.session.get('validUser') %}
+                {% else %}
+
+             {% if  app.session.get('validUser') =='ADMIN' %}
+                <li class="nav-item pdf-no-display">
+                    <a class="nav-link" href=""><i class="fa fa-home"></i>  Dashboard</a>
+                </li>
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Reports</a>
+                    
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{path('expenses_index')}}">Mission expenses</a>
+                            <a class="dropdown-item" href="{{path('report_index')}}">Currently staff in mission</a>
+                            <a class="dropdown-item" href="{{path('transport_index')}}">Transportation</a>
+                        <a class="dropdown-item" href="{{path('all_index')}}">All missions</a>
+                        
+                    </div>
+                </li>
+                <li class="nav-item"><a class="nav-link " href="{{path('mission_index')}}"><i class="fa fa-bar-chart"></i>Missions</a></li>
+                <li class="nav-item"><a class="nav-link " href="{{path('staff_index')}}"><i class="fa fa-download"></i>Employees</a></li>
+            <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">User Security</a>
+                    <div class="dropdown-menu">
+                    
+                    <a class="dropdown-item" href="{{path('authoriser_index')}}">Manage Roles</a>
+                    <a class="dropdown-item" href="{{path('app_user_index')}}">Manage Users</span></a>
+                        
+                    </div>
+                </li>
+            <li class="nav-item dropdown">
+             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">App configuration</a>
+                    <div class="dropdown-menu">
+        
+                        <a class="dropdown-item" href="{{path('level_index')}}">Manage Levels</a>
+                        <a class="dropdown-item" href="{{path('position_index')}}">Manage Positions</a>
+                        <a class="dropdown-item" href="{{path('allowance_index')}}">Manage Allowances</a>
+                        <a class="dropdown-item" href="{{path('department_index')}}">Manage Departments</a>
+                        <a class="dropdown-item" href="{{path('location_index')}}">Manage Destinations</a>
+                        
+                    </div>
+            </li>
+                             
+            <li class="nav-item"><a class="nav-link " href="{{path('car_trip_index')}}">Car trips</a></li>
+                        
+                {% else %}
+            <li class="nav-item pdf-no-display">
+                           
+                <a class="nav-link " href="{{path('dashboard_index')}}"><i class="fa fa-home"></i>Dashboard</a>
+            </li>
+
+                 {% if app.session.get('validUser') =='USER'%}
+                          
+            <li class="nav-item pdf-no-display">
+                <a class="nav-link " href="{{path('my_mission',{'id':app.session.get('staffId')})}}"><i class="fa fa-home"></i> My Missions</a>
+            </li>
+                    {% else %}
+            <li class="nav-item pdf-no-display">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Missions</a>
+                    <div class="dropdown-menu">
+                            
+                       <a class="dropdown-item" href="{{path('mission_index')}}">Missions requested by staff</a>
+                
+                        <a class="dropdown-item" href="{{path('my_mission',{'id':app.session.get('staffId')})}}">My missions</a>
+                        
+                    </div>
+            </li>
+                    {% endif %}
+                        
+                  {% endif %}
+            <li class="nav-item"><a class="nav-link " href="{{path('vehicle_index')}}">Request a vehicle</a></li>
+                        
+                           
+         {% endif %}
+
+            </ul>
+        </div>
+        </nav>
+        </div>
+        

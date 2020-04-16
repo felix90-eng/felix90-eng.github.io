@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CarTrip{% endblock %}
+
+{% block body %}
+<div class ="col-sm-9">
+<h1> CarTrip</h1>
+
+   <a href="{{ path('car_trip_index') }}">back to list</a>
+<div class ="jumbotron">
+    {{ include('car_trip/_form.html.twig') }}
+
+    </div>
+    </div>
+
+
+    <script>
+
+    $(document).ready(function(){
+
+          $('#car_trip_destination').on('mouseout', function() {
+
+                $('#car_trip_trip').val('Kigali'+'-'+ $('#car_trip_destination').val());
+
+          });
+
+    });
+    </script>
+{% endblock %}

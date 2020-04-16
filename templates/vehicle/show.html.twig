@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vehicle{% endblock %}
+
+{% block body %}
+
+<div class ="col-sm-9">
+    <h1>Staff requested vehicle</h1>
+
+     <a href="{{ path('vehicle_index') }}">back to list</a>
+
+    <a href="{{ path('vehicle_edit', {'id': vehicle.id}) }}">edit</a>
+
+    {{ include('vehicle/_delete_form.html.twig') }}
+
+    <div class ="jumbotron">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ vehicle.id }}</td>
+            </tr>
+            <tr>
+                <th>Purpose</th>
+                <td>{{ vehicle.purpose }}</td>
+            </tr>
+            <tr>
+                <th>Transportername</th>
+                <td>{{ vehicle.transportername }}</td>
+            </tr>
+            <tr>
+                <th>Companyname</th>
+                <td>{{ vehicle.companyname }}</td>
+            </tr>
+            <tr>
+                <th>Platno</th>
+                <td>{{ vehicle.platno }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ vehicle.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Tripamount</th>
+                <td>{{ vehicle.tripamount }}</td>
+            </tr>
+            <tr>
+                <th>Tripdays</th>
+                <td>{{ vehicle.tripdays }}</td>
+            </tr>
+            <tr>
+                <th>Totalamount</th>
+                <td>{{ vehicle.totalamount }}</td>
+            </tr>
+            <tr>
+                <th>Transporterstyle</th>
+                <td>{{ vehicle.transporterstyle }}</td>
+            </tr>
+            <tr>
+                <th>Ttelephone</th>
+                <td>{{ vehicle.ttelephone }}</td>
+            </tr>
+            <tr>
+                <th>Timedisparture</th>
+                <td>{{ vehicle.timedisparture ? vehicle.timedisparture|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Arrivaltime</th>
+                <td>{{ vehicle.arrivaltime ? vehicle.arrivaltime|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+   
+    </div>
+    </div>
+{% endblock %}

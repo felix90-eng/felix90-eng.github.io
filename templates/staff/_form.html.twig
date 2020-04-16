@@ -1,0 +1,14 @@
+
+
+<style>
+#content{
+ background-color :white;
+ padding-left:3%;
+ margin-top:3%;
+    </style>
+<div id ="content">
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+</div>

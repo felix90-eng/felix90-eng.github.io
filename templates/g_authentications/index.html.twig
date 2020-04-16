@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GAuthentications index{% endblock %}
+
+{% block body %}
+<div class ="col pt-2">
+    <h1>GAuthentications index</h1>
+       <a href="{{ path('g_authentications_new') }}">Create new</a>
+
+     <table id ="myTable" class="records_list table table-striped table-bordered  dt-responsive " cellspacing="0" ">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Gauthentication</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for g_authentication in g_authentications %}
+            <tr>
+                <td>{{ g_authentication.id }}</td>
+                <td>{{ g_authentication.gauthentication }}</td>
+                <td>
+                    <a href="{{ path('g_authentications_show', {'id': g_authentication.id}) }}">show</a>
+                    <a href="{{ path('g_authentications_edit', {'id': g_authentication.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+     </div>
+
+<script>
+$(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+</script>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Staff index{% endblock %}
+
+{% block body %}
+    <h1>Staff list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th colspan ="2">Name</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for staff in staff %}
+            <tr class ="data">
+                <td  data-id='{{ staff.id }}'>{{ staff.id }}</td>
+                <td>{{ staff.firstName }}</td>
+                <td>{{ staff.lastName }}</td>
+                
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+
+{% block javascripts %}
+
+<script>
+
+$(document).on('click','.data',function(){
+
+var data = $(this).attr('data-id');
+alert(data);
+});
+
+</script>
+
+{% endblock %}

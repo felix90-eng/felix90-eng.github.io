@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CarTrip index{% endblock %}
+
+{% block body %}
+
+<div class ="col-sm-9">
+    <h1>CarTrip index</h1>
+    
+ <a href="{{ path('car_trip_new') }}">Create new</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Trip</th>
+                <th>Amountprice</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for car_trip in car_trips %}
+            <tr>
+                <td>{{ car_trip.id }}</td>
+                <td>{{ car_trip.trip }}</td>
+                <td>{{ car_trip.amountprice }}</td>
+                <td>
+                    <a href="{{ path('car_trip_show', {'id': car_trip.id}) }}">show</a>
+                    <a href="{{ path('car_trip_edit', {'id': car_trip.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    </div>
+{% endblock %}

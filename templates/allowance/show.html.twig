@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Allowance{% endblock %}
+
+{% block body %}
+    <h1>Allowance</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ allowance.id }}</td>
+            </tr>
+            <tr>
+                <th>Allowance_per_night</th>
+                <td>{{ allowance.allowancePerNight }}</td>
+            </tr>
+            <tr>
+                <th>Allowance_per_day</th>
+                <td>{{ allowance.allowancePerDay }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('allowance_index') }}">back to list</a>
+
+    <a href="{{ path('allowance_edit', {'id': allowance.id}) }}">edit</a>
+
+    {{ include('allowance/_delete_form.html.twig') }}
+{% endblock %}
